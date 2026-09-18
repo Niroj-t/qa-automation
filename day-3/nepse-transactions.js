@@ -6,7 +6,7 @@ const transactions = [
   { id: 5, symbol: 'ADBL',  type: 'BUY',  qty: 20 /* price missing! */ },
 ];
 
-/* Task: custom error — reject invalid trades */
+/* custom error — reject invalid trades */
 class InvalidTradeError extends Error {
   constructor(message) {
     super(message);
@@ -14,7 +14,7 @@ class InvalidTradeError extends Error {
   }
 }
 
-/* Task: destructuring — unpack each record */
+/* destructuring — unpack each record */
 function validateTrade({ id, price }) {
   if (price === undefined) {
     throw new InvalidTradeError('price is missing');
@@ -22,13 +22,13 @@ function validateTrade({ id, price }) {
   return true;
 }
 
-/* Task: map — a readable label for each trade */
+/* map — a readable label for each trade */
 const labels = transactions.map(({ id, symbol, type, qty }) =>
   `#${id} ${type} ${qty} ${symbol}`
 );
 console.log('1)', labels.join(' | '));
 
-/* Task: filter — only the BUY transactions */
+/* filter — only the BUY transactions */
 const buys = transactions.filter(t => t.type === 'BUY');
 console.log(`2) BUY count: ${buys.length}`);
 
@@ -36,18 +36,18 @@ console.log(`2) BUY count: ${buys.length}`);
 const firstNabil = transactions.find(t => t.symbol === 'NABIL');
 console.log(`3) First NABIL trade id: ${firstNabil.id}`);
 
-/* Task: reduce — total value of all trades */
+/* reduce — total value of all trades */
 const totalValue = transactions.reduce(
   (sum, t) => sum + t.qty * (t.price ?? 0),
   0
 );
 console.log(`4) Total value of all trades: Rs ${totalValue}`);
 
-/* Task: ?. and ?? — handle the missing price */
+/* ?. and ?? — handle the missing price */
 const trade5 = transactions[4];
 console.log(`5) #${trade5.id} ${trade5.symbol}: Rs ${trade5.price ?? 'N/A'}        // ?. and ?? handled the missing price`);
 
-/* Task: template literals — print a report + trigger the custom error */
+/* template literals — print a report + trigger the custom error */
 transactions.forEach(t => {
   try {
     validateTrade(t);
