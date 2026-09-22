@@ -1,5 +1,5 @@
 function findById(users, id){
-    return users.find(u => u.id === id | u.id);
+    return users.find(u => u.id === id);
 
 }
 
