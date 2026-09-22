@@ -1,4 +1,3 @@
-// validate() checks a payment and returns a message
 interface Payment {
     amountPaisa: number;
     status: "SUCCESS" | "PENDING" | "FAILED";
